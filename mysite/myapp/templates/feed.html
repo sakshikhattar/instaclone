@@ -1,14 +1,23 @@
+
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Feed</title>
+    <title>Title</title>
 </head>
 <body>
-<form method="POST">
-      {% for post in posts %}
+    <form method="post" action="/post/">
+        {% csrf_token %}
+        <input type="submit" class="btn-default btn" value="Create Post">
+    </form>
 
-    <h3> Posted by: {{ post.user.username }} </h3>
+
+    {% for post in posts %}
+
+
+        <h3> Posted by: {{ post.user.username }} </h3>
         <p>[{{ post.created_on }}]</p>
         <img style="display:inline-block; width:350px; height:300px;"
              src="{{ post.image_url }}" /><br>
@@ -17,8 +26,7 @@
             {{ post.like_count }} likes this
         </div>
         <div style="display:inline-block">
-
-        <form method="POST" action="/like/">
+            <form method="POST" action="/like/">
               {% csrf_token %}
               <input type="hidden" name="post" value="{{ post.id }}" />
                 {% if post.has_liked %}
@@ -29,7 +37,7 @@
             </form>
         </div>
 
-         <div>
+        <div>
             <form method="POST" action="/comment/">
                 {% csrf_token %}
                 <input type="hidden" name="post" value="{{ post.id }}" />
@@ -43,14 +51,9 @@
             {% for comment in post.comments %}
                 <p><b>{{ comment.user.username }} [{{ comment.created_on }}]:</b> {{ comment.comment_text }}</p>
             {% endfor %}
+        <hr>
         </div>
 
     {% endfor %}
-
-
-
-   </form>
-
-
 </body>
 </html>
