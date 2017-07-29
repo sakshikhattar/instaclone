@@ -13,9 +13,9 @@ from clarifai.rest import ClarifaiApp, Image as CImage
 from imgurpython import ImgurClient
 from enum import Enum
 import sendgrid
+from sendgrid.helpers.mail import *
+import os
 
-
-# Create your views here.
 
 def signup_view(request):
     if request.method == "POST":
@@ -88,7 +88,7 @@ def post_view(request):
                 post.save()
                 keywords = ['garbage', 'waste', 'trash', 'dirt', 'pollution', 'dust']
                 value_list = []
-                app = ClarifaiApp(api_key='de3548011bc94054bf8f2cc57f84376e')
+                app = ClarifaiApp(api_key='ecc5aea7265040b4b320b3446f96152c')
 
                 model = app.models.get('general-v1.3')
                 image = CImage(url=post.image_url)
@@ -101,6 +101,7 @@ def post_view(request):
 
                 if (sentiment_value < 0.6 and max(value_list) > 0.8):
                     print 'dirty image'
+                    send_mail(post.image_url)
 
                 return redirect('/feed/')
 
@@ -111,7 +112,19 @@ def post_view(request):
         return redirect('/login/')
 
 
+def send_mail(url):
+    sg = sendgrid.SendGridAPIClient(apikey='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')
 
+    from_email = Email("sakshikhattar1@gmail.com")
+    to_email = Email("Raman007bidhuri@gmail.com")
+    message = "<html><body><h1>Image of the dirty area</h1><br><img src =" + url + "></body></html>"
+    subject = "Image of dirty area!"
+    content = Content("text/html", message)
+    mail = Mail(from_email, subject, to_email, content)
+    response = sg.client.mail.send.post(request_body=mail.get())
+    print(response.status_code)
+    print(response.body)
+    print(response.headers)
 
 
 def feed_view(request):
