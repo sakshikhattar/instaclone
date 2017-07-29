@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>Instagram Clone</title>
+    <style>
+       body{
+           background: url("https://www.walldevil.com/wallpapers/a33/design-colorful-amazing-wallpapers-freewallpapers-wallpaper-abstract.jpg");
+           background-size: cover;
+           background-repeat: no-repeat;
+           -webkit-background-size: cover;
+            text-align: center;
+       }
+        div{
+            font-family: Cambria;
+            color: darkslategrey;
+            margin: 10px;
+        }
+        .main
+        {
+            text-align:center;
+            font-size: 22px;
+        }
+        form{
+            font-size: 16px;
+        }
+        label{
+display:inline-block;
+width:200px;
+text-align:right;
+            margin-left: -120px;
+}
+        button{
+            font-size: 16px;
+        }
+    </style>
+
 
 </head>
 <body>
 	<div class="main">
             <h1> Instagram Clone</h1>
-            <h2>Today is:{{today}}</h2>
             <h3>Sign Up</h3>
     </div>
 
@@ -41,7 +72,8 @@
 
     </div><br><br>
 
-    <div><h3>Already a user?</h3><a href="login/">Login</a> </div>
+    <div><h3>Already a user?</h3><button onclick= "location.href = 'login/'" type="button">Login</button>
+</div>
 </body>
 </html>
 

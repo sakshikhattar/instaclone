@@ -5,13 +5,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Feed</title>
+    <style>
+        body{
+            text-align: center;
+        }
+
+        h3{
+            text-align: center;
+            height: 20px;
+        }
+        span{
+            text-align: center;
+        }
+
+    </style>
 </head>
 <body>
-    <form method="post" action="/post/">
-        {% csrf_token %}
-        <input type="submit" class="btn-default btn" value="Create Post">
-    </form>
+
+
+<button onclick= "location.href = 'post/'" type="button">Create Post</button>
+<div style="float: right">
+<form method="POST" action="/logout/">
+            {% csrf_token %}
+    <input type="submit" class="btn btn-default" value="Logout">
+</form>
+</div>
 
 
     {% for post in posts %}

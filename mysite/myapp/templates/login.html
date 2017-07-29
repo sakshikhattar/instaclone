@@ -3,20 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <style>
+        body{
+            text-align: center;
+            background: url("https://www.walldevil.com/wallpapers/a33/design-colorful-amazing-wallpapers-freewallpapers-wallpaper-abstract.jpg") no-repeat center center fixed;
+           background-size: cover;
+           background-repeat: no-repeat;
+           -webkit-background-size: cover;
+        }
+        h1{
+            font-family: Cambria;
+        }
+ form{
+            font-size: 22px;
+        }
+label{
+display:inline-block;
+width:200px;
+text-align:right;
+            margin-left: -120px;
+}
+.btn{       margin: 20px;
+            font-size: 16px;
+            text-align: center;
+            font-family: "Arial Black";
+        }
+input{
+    font-size: 22px;
+}
+    </style>
 </head>
 <body>
+<h1>Instagram Clone</h1><br>
+
+    <h2>Login</h2>
  <form method="post">
      {% csrf_token %}
-
+      <b>
       <div>
           <label for="username">Username: </label>
           <input id="username" type="text" name="username" value={{ username }}>
       </div>
+          <br>
 
       <div>
           <label for="password">Password: </label>
           <input id="password" type="password" name="password" value={{ password }}>
+
       </div>
+      </b>
+     <br>
+
 
       <input type="submit" value="Log In">
 

@@ -175,6 +175,15 @@ def comment_view(request):
     else:
         return redirect('/login')
 
+def logout_view(request):
+    user = check_validation(request)
+    if user is not None:
+        latest_session = SessionToken.objects.filter(user=user).last()
+        if latest_session:
+            latest_session.delete()
+
+    return redirect("/login/")
+
 
 # For validating the session
 def check_validation(request):
